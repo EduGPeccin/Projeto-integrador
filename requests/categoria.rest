@@ -1,0 +1,55 @@
+@baseURL = http://localhost:3000
+@id_da_categoria = 3
+
+### Listar todas as categorias
+GET {{baseURL}}/categorias
+Accept: application/json
+
+### Criar uma nova categoria
+POST {{baseURL}}/categorias
+Content-Type: application/json
+
+{
+ "name": "Eletrônicos"
+}
+
+
+### Criar categoria com nome inválido (erro esperado)
+POST {{baseURL}}/categorias
+Content-Type: application/json
+
+{
+ "name": "Teste Nome Invalido"
+}
+
+### Criar categoria com nome repetido (erro esperado)
+POST {{baseURL}}/categorias
+Content-Type: application/json
+
+{
+ "name": "Eletrônicos"
+}
+
+### Atualizar uma categoria existente (substitua @id_da_categoria)
+PUT {{baseURL}}/categorias/{{id_da_categoria}}
+Content-Type: application/json
+    
+{
+ "name": "Eletrônicos Atualizados"
+}
+
+### Atualizar categoria inexistente (erro esperado)
+PUT {{baseURL}}/categorias/9999
+Content-Type: application/json
+
+{
+ "name": "Categoria Inexistente"
+}
+
+### Deletar uma categoria existente (substitua @id_da_categoria)
+DELETE {{baseURL}}/categorias/{{id_da_categoria}}
+Accept: application/json
+
+### Deletar uma categoria inexistente (erro esperado)
+DELETE {{baseURL}}/categorias/9999
+Accept: application/json

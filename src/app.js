@@ -6,6 +6,7 @@ const helmet = require('helmet');
 // Importa o middleware de segurança que adiciona cabeçalhos HTTP para proteger contra ataques comuns
 const userRoutes = require('./routes/userRoutes');
 const categoriaRoutes = require('./routes/categoriaRoutes')
+const tecnicoRoutes = require('./routes/tecnicoRoutes')
 // Importa as rotas relacionadas aos usuários
 const errorMiddleware = require('./middlewares/errorMiddleware');
 // Importa o middleware para tratamento centralizado de erros
@@ -21,9 +22,10 @@ app.use(express.json());
 // Rotas da aplicação
 app.use('/users', userRoutes);
 app.use('/categorias', categoriaRoutes);
+app.use('/tecnicos', tecnicoRoutes);
 // Define que todas as requisições iniciadas com /users serão encaminhadas para o arquivo userRoutes
 // Middleware de tratamento de erros (deve ser adicionado depois das rotas)
 app.use(errorMiddleware);
-// Middleware que captura e trata erros, enviando respostas ao cliente
+// Middleware que captura e trata erros, enviando respostas ao client
 module.exports = app;
 // Exporta a aplicação configurada para ser utilizada pelo servidor (server.js)

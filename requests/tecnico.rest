@@ -1,0 +1,59 @@
+@baseURL = http://localhost:3000
+@id_do_tecnico = 3
+
+### Listar todos os técnicos
+GET {{baseURL}}/tecnicos
+Accept: application/json
+
+### Criar um novo técnico
+POST {{baseURL}}/tecnicos
+Content-Type: application/json
+
+{
+ "name": "Carlos Almeida",
+ "email": "carlos@example.com"
+}
+
+### Criar técnico com email inválido (erro esperado)
+POST {{baseURL}}/tecnicos
+Content-Type: application/json
+
+{
+ "name": "Teste Email Invalido",
+ "email": "email_invalido"
+}
+
+### Criar técnico com email repetido (erro esperado)
+POST {{baseURL}}/tecnicos
+Content-Type: application/json
+
+{
+ "name": "Carlos Almeida",
+ "email": "carlos@example.com"
+}
+
+### Atualizar um técnico existente (substitua @id_do_tecnico)
+PUT {{baseURL}}/tecnicos/{{id_do_tecnico}}
+Content-Type: application/json
+    
+{
+ "name": "Carlos de Almeida Atualizado",
+ "email": "carlosatualizado@example.com"
+}
+
+### Atualizar técnico inexistente (erro esperado)
+PUT {{baseURL}}/tecnicos/9999
+Content-Type: application/json
+
+{
+ "name": "Usuario Inexistente",
+ "email": "inexistente@example.com"
+}
+
+### Deletar um técnico existente (substitua @id_do_tecnico)
+DELETE {{baseURL}}/tecnicos/{{id_do_tecnico}}
+Accept: application/json
+
+### Deletar um técnico inexistente (erro esperado)
+DELETE {{baseURL}}/tecnicos/9999
+Accept: application/json

@@ -5,6 +5,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 // Importa o middleware de segurança que adiciona cabeçalhos HTTP para proteger contra ataques comuns
 const userRoutes = require('./routes/userRoutes');
+const categoriaRoutes = require('./routes/categoriaRoutes')
 // Importa as rotas relacionadas aos usuários
 const errorMiddleware = require('./middlewares/errorMiddleware');
 // Importa o middleware para tratamento centralizado de erros
@@ -19,6 +20,7 @@ app.use(express.json());
 // Permite que o servidor interprete requisições com corpo em formato JSON
 // Rotas da aplicação
 app.use('/users', userRoutes);
+app.use('/categorias', categoriaRoutes);
 // Define que todas as requisições iniciadas com /users serão encaminhadas para o arquivo userRoutes
 // Middleware de tratamento de erros (deve ser adicionado depois das rotas)
 app.use(errorMiddleware);

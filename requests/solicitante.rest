@@ -1,0 +1,59 @@
+@baseURL = http://localhost:3000
+@id_do_solicitante = 3
+
+### Listar todos os solicitantes
+GET {{baseURL}}/solicitantes
+Accept: application/json
+
+### Criar um novo solicitante
+POST {{baseURL}}/solicitantes
+Content-Type: application/json
+
+{
+ "name": "Carlos Almeida",
+ "email": "carlos@example.com"
+}
+
+### Criar solicitante com email inválido (erro esperado)
+POST {{baseURL}}/solicitantes
+Content-Type: application/json
+
+{
+ "name": "Teste Email Invalido",
+ "email": "email_invalido"
+}
+
+### Criar solicitante com email repetido (erro esperado)
+POST {{baseURL}}/solicitantes
+Content-Type: application/json
+
+{
+ "name": "Carlos Almeida",
+ "email": "carlos@example.com"
+}
+
+### Atualizar um solicitante existente (substitua @id_do_solicitante)
+PUT {{baseURL}}/solicitantes/{{id_do_solicitante}}
+Content-Type: application/json
+    
+{
+ "name": "Carlos de Almeida Atualizado",
+ "email": "carlosatualizado@example.com"
+}
+
+### Atualizar solicitante inexistente (erro esperado)
+PUT {{baseURL}}/solicitantes/9999
+Content-Type: application/json
+
+{
+ "name": "Solicitante Inexistente",
+ "email": "inexistente@example.com"
+}
+
+### Deletar um solicitante existente (substitua @id_do_solicitante)
+DELETE {{baseURL}}/solicitantes/{{id_do_solicitante}}
+Accept: application/json
+
+### Deletar um solicitante inexistente (erro esperado)
+DELETE {{baseURL}}/solicitantes/9999
+Accept: application/json

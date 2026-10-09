@@ -6,6 +6,11 @@ class SolicitanteModel {
         const [rows] = await db.query('SELECT * FROM solicitantes');
         return rows;
     }
+    // Busca um solicitante pelo ID
+    static async findById(id) {
+        const [rows] = await db.query('SELECT * FROM solicitantes WHERE id = ?', [id]);
+        return rows[0];
+    }
     // Busca um solicitante pelo email
     static async findByEmail(email) {
         const [rows] = await db.query('SELECT * FROM solicitantes WHERE email = ?', [email]);
@@ -13,14 +18,14 @@ class SolicitanteModel {
     }
     //cria um novo solicitante
     static async create(solicitante) {
-        const { name, email } = solicitante;
-        const [result] = await db.query('INSERT INTO solicitantes (name, email) VALUES (?,?)', [name, email]);
+        const { nome, email, setor } = solicitante;
+        const [result] = await db.query('INSERT INTO solicitantes (nome, email, setor) VALUES (?, ?, ?)', [nome, email, setor]);
         return result.insertId; // Retorna o ID do solicitante criado
     }
     // Atualiza um solicitante existente
     static async update(id, solicitante) {
-        const { name, email } = solicitante;
-        const [result] = await db.query('UPDATE solicitantes SET name = ?, email = ? WHERE id = ?', [name, email, id]);
+        const { nome, email, setor } = solicitante;
+        const [result] = await db.query('UPDATE solicitantes SET nome = ?, email = ?, setor = ? WHERE id = ?', [nome, email, setor, id]);
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
     // Deleta um solicitante pelo ID

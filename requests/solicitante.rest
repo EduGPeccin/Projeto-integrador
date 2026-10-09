@@ -5,13 +5,18 @@
 GET {{baseURL}}/solicitantes
 Accept: application/json
 
+### Listar um solicitante específico
+GET {{baseURL}}/solicitantes/{{id_do_solicitante}}
+Accept: application/json
+
 ### Criar um novo solicitante
 POST {{baseURL}}/solicitantes
 Content-Type: application/json
 
 {
- "name": "Carlos Almeida",
- "email": "carlos@example.com"
+ "nome": "Carlos Almeida",
+ "email": "carlos@example.com",
+ "setor": "TI"
 }
 
 ### Criar solicitante com email inválido (erro esperado)
@@ -20,7 +25,8 @@ Content-Type: application/json
 
 {
  "name": "Teste Email Invalido",
- "email": "email_invalido"
+ "email": "email_invalido",
+ "setor": "TI"
 }
 
 ### Criar solicitante com email repetido (erro esperado)
@@ -29,7 +35,8 @@ Content-Type: application/json
 
 {
  "name": "Carlos Almeida",
- "email": "carlos@example.com"
+ "email": "carlos@example.com",
+ "setor": "TI"
 }
 
 ### Atualizar um solicitante existente (substitua @id_do_solicitante)
@@ -38,7 +45,8 @@ Content-Type: application/json
     
 {
  "name": "Carlos de Almeida Atualizado",
- "email": "carlosatualizado@example.com"
+ "email": "carlosatualizado@example.com",
+ "setor": "TI"
 }
 
 ### Atualizar solicitante inexistente (erro esperado)
@@ -47,7 +55,8 @@ Content-Type: application/json
 
 {
  "name": "Solicitante Inexistente",
- "email": "inexistente@example.com"
+ "email": "inexistente@example.com",
+ "setor": "TI"
 }
 
 ### Deletar um solicitante existente (substitua @id_do_solicitante)

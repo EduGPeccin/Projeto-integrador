@@ -8,6 +8,7 @@ const userRoutes = require('./routes/userRoutes');
 const categoriaRoutes = require('./routes/categoriaRoutes')
 const tecnicoRoutes = require('./routes/tecnicoRoutes')
 const solicitanteRoutes = require('./routes/solicitanteRoutes')
+const chamadoRoutes = require('./routes/chamadoRoutes')
 // Importa as rotas relacionadas aos usuários
 const errorMiddleware = require('./middlewares/errorMiddleware');
 // Importa o middleware para tratamento centralizado de erros
@@ -25,6 +26,7 @@ app.use('/users', userRoutes);
 app.use('/categorias', categoriaRoutes);
 app.use('/tecnicos', tecnicoRoutes);
 app.use('/solicitantes', solicitanteRoutes);
+app.use('/chamados', chamadoRoutes);
 // Define que todas as requisições iniciadas com /users serão encaminhadas para o arquivo userRoutes
 // Middleware de tratamento de erros (deve ser adicionado depois das rotas)
 app.use(errorMiddleware);

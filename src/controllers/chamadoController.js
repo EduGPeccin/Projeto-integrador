@@ -10,6 +10,19 @@ class ChamadoController {
  res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
  }
  }
+ // Método para listar um chamado específico pelo ID
+ static async getById(req, res) {
+ try {
+   const id = req.params.id; // Pega o ID da URL
+   const chamado = await ChamadoService.getChamadoById(id); // Chama o service para buscar chamado pelo ID
+   if (!chamado) {
+     return res.status(404).json({ error: 'Chamado não encontrado.' }); // Retorna 404 se não encontrar
+   }
+   res.json(chamado); // Retorna o chamado encontrado em formato JSON
+ } catch (error) {
+   res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
+ }
+ }
  // Método para criar um novo chamado
  static async create(req, res) {
  try {
@@ -17,26 +30,6 @@ class ChamadoController {
  res.status(201).json({ message: 'Chamado criado com sucesso.', id }); // Retorna status 201 (criado) e o ID
  } catch (error) {
  res.status(400).json({ error: error.message }); // Em caso de erro de validação, retorna status 400
- }
- }
- // Método para atualizar um chamado existente
- static async update(req, res) {
- try {
- const id = req.params.id; // Pega o ID da URL
- await ChamadoService.updateChamado(id, req.body); // Chama o service para atualizar
- res.json({ message: 'Chamado atualizado com sucesso.' });
- } catch (error) {
-    res.status(400).json({ error: error.message }); // Retorna erro se não encontrar ou problema nos dados
- }
- }
- // Método para deletar um chamado
- static async delete(req, res) {
- try {
- const id = req.params.id; // Pega o ID da URL
- await ChamadoService.deleteChamado(id); // Chama o service para deletar
- res.json({ message: 'Chamado deletado com sucesso.' });
- } catch (error) {
- res.status(400).json({ error: error.message }); // Retorna erro se chamado não encontrado
  }
  }
 }

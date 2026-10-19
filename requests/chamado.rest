@@ -5,55 +5,19 @@
 GET {{baseURL}}/chamados
 Accept: application/json
 
+### Listar um chamado específico
+GET {{baseURL}}/chamados/{{id_do_chamado}}
+Accept: application/json
+
 ### Criar um novo chamado
 POST {{baseURL}}/chamados
 Content-Type: application/json
 
 {
- "name": "Carlos Almeida",
- "email": "carlos@example.com"
+ "titulo": "Problema com o sistema",
+ "descricao": "O sistema está apresentando lentidão.",
+ "prioridade": "Alta",
+ "solicitantes.nome": "João Silva",
+ "categorias.nome": "TI",
+ "tecnicos.nome": "Roberto Almeida"
 }
-
-### Criar chamado com email inválido (erro esperado)
-POST {{baseURL}}/chamados
-Content-Type: application/json
-
-{
- "name": "Teste Email Invalido",
- "email": "email_invalido"
-}
-
-### Criar chamado com email repetido (erro esperado)
-POST {{baseURL}}/chamados
-Content-Type: application/json
-
-{
- "name": "Carlos Almeida",
- "email": "carlos@example.com"
-}
-
-### Atualizar um chamado existente (substitua @id_do_chamado)
-PUT {{baseURL}}/chamados/{{id_do_chamado}}
-Content-Type: application/json
-    
-{
- "name": "Carlos de Almeida Atualizado",
- "email": "carlosatualizado@example.com"
-}
-
-### Atualizar usuário inexistente (erro esperado)
-PUT {{baseURL}}/users/9999
-Content-Type: application/json
-
-{
- "name": "Chamado Inexistente",
- "email": "inexistente@example.com"
-}
-
-### Deletar um chamado existente (substitua @id_do_chamado)
-DELETE {{baseURL}}/chamados/{{id_do_chamado}}
-Accept: application/json
-
-### Deletar um chamado inexistente (erro esperado)
-DELETE {{baseURL}}/chamados/9999
-Accept: application/json

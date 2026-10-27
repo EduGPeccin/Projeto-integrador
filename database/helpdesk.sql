@@ -2,26 +2,26 @@ create database helpdesk;
 use helpdesk;
 
 create table solicitantes(
-	id_solicitante int primary key,
+	id_solicitante int primary key AUTO_INCREMENT,
     nome varchar(100),
     email varchar(100),
     setor varchar(50)
     );
     
 create table categorias(
-	id_categoria int primary key,
+	id_categoria int primary key AUTO_INCREMENT,
     nome varchar(30),
     descricao varchar(100)    
     );
     
 create table tecnicos(
-	id_tecnico int primary key,
+	id_tecnico int primary key AUTO_INCREMENT,
     nome varchar(100),
     email varchar(100)
     );
     
 create table chamados(
-	id_chamado int primary key,
+	id_chamado int primary key AUTO_INCREMENT,
     titulo varchar(100),
     descricao text,
     prioridade varchar(50),

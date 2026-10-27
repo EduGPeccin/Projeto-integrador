@@ -7,14 +7,6 @@ class SolicitanteService {
   static async getAllSolicitantes() {
     return await SolicitanteModel.findAll();
   }
-   // Busca um solicitante específico pelo ID
-   static async getSolicitanteById(id) {
-      const solicitante = await SolicitanteModel.findById(id);
-      if (!solicitante) {
-        throw new Error("Solicitante não encontrado."); // Caso não encontre o solicitante, lança um erro
-      }
-      return await SolicitanteModel.findById(id); // Retorna o solicitante encontrado
-  }
   // Cria um novo solicitante após validações
   static async createSolicitante(solicitante) {
     if (!validateEmail(solicitante.email)) {
@@ -29,16 +21,16 @@ class SolicitanteService {
     return await SolicitanteModel.create(solicitante); // Cria o novo solicitante
   }
   // Atualiza informações de um solicitante existente
-  static async updateSolicitante(id, solicitante) {
-    const updatedRows = await SolicitanteModel.update(id, solicitante);
+  static async updateSolicitante(id_solicitante, solicitante) {
+    const updatedRows = await SolicitanteModel.update(id_solicitante, solicitante);
     if (updatedRows === 0) {
       throw new Error("Solicitante não encontrado."); // Caso nenhum solicitante tenha sido atualizado
     }
     return updatedRows;
   }
   // Deleta um solicitante pelo ID
-  static async deleteSolicitante(id) {
-    const deletedRows = await SolicitanteModel.delete(id);
+  static async deleteSolicitante(id_solicitante) {
+    const deletedRows = await SolicitanteModel.delete(id_solicitante);
     if (deletedRows === 0) {
       throw new Error("Solicitante não encontrado."); // Caso nenhum solicitante tenha sido deletado
     }

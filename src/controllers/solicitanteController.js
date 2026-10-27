@@ -10,16 +10,6 @@ class SolicitanteController {
       res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
     }
   }
-  // Método para listar um solicitante específico pelo ID
-  static async getById(req, res) {
-    try {
-      const id = req.params.id; // Pega o ID da URL
-      const solicitante = await SolicitanteService.getSolicitanteById(id); // Chama o service para buscar solicitante
-      res.json(solicitante); // Retorna o solicitante em formato JSON
-    } catch (error) {
-      res.status(404).json({ error: error.message }); // Em caso de erro, retorna status 404 (não encontrado)
-    }
-  }
   // Método para criar um novo solicitante
   static async create(req, res) {
     try {
@@ -32,8 +22,8 @@ class SolicitanteController {
   // Método para atualizar um solicitante existente
   static async update(req, res) {
     try {
-      const id = req.params.id; // Pega o ID da URL
-      await SolicitanteService.updateSolicitante(id, req.body); // Chama o service para atualizar
+      const id_solicitante = req.params.id; // Pega o ID da URL
+      await SolicitanteService.updateSolicitante(id_solicitante, req.body); // Chama o service para atualizar
       res.json({ message: "Solicitante atualizado com sucesso." });
     } catch (error) {
       res.status(400).json({ error: error.message }); // Retorna erro se não encontrar ou problema nos dados
@@ -42,8 +32,8 @@ class SolicitanteController {
   // Método para deletar um solicitante
   static async delete(req, res) {
     try {
-      const id = req.params.id; // Pega o ID da URL
-      await SolicitanteService.deleteSolicitante(id); // Chama o service para deletar
+      const id_solicitante = req.params.id; // Pega o ID da URL
+      await SolicitanteService.deleteSolicitante(id_solicitante); // Chama o service para deletar
       res.json({ message: "Solicitante deletado com sucesso." });
     } catch (error) {
       res.status(400).json({ error: error.message }); // Retorna erro se solicitante não encontrado

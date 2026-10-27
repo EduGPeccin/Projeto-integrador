@@ -24,7 +24,7 @@ POST {{baseURL}}/solicitantes
 Content-Type: application/json
 
 {
- "name": "Teste Email Invalido",
+ "nome": "Teste Email Invalido",
  "email": "email_invalido",
  "setor": "TI"
 }
@@ -34,7 +34,7 @@ POST {{baseURL}}/solicitantes
 Content-Type: application/json
 
 {
- "name": "Carlos Almeida",
+ "nome": "Carlos Almeida",
  "email": "carlos@example.com",
  "setor": "TI"
 }
@@ -44,7 +44,7 @@ PUT {{baseURL}}/solicitantes/{{id_do_solicitante}}
 Content-Type: application/json
     
 {
- "name": "Carlos de Almeida Atualizado",
+ "nome": "Carlos de Almeida Atualizado",
  "email": "carlosatualizado@example.com",
  "setor": "TI"
 }
@@ -54,7 +54,7 @@ PUT {{baseURL}}/solicitantes/9999
 Content-Type: application/json
 
 {
- "name": "Solicitante Inexistente",
+ "nome": "Solicitante Inexistente",
  "email": "inexistente@example.com",
  "setor": "TI"
 }

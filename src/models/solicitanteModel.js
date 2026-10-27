@@ -6,6 +6,11 @@ class SolicitanteModel {
         const [rows] = await db.query('SELECT * FROM solicitantes');
         return rows;
     }
+    // Busca um solicitante pelo ID
+    static async findById(id) {
+        const [rows] = await db.query('SELECT * FROM solicitantes WHERE id = ?', [id]);
+        return rows[0];
+    }
     // Busca um solicitante pelo email
     static async findByEmail(email) {
         const [rows] = await db.query('SELECT * FROM solicitantes WHERE email = ?', [email]);

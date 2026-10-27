@@ -5,6 +5,10 @@
 GET {{baseURL}}/solicitantes
 Accept: application/json
 
+### Listar um solicitante específico
+GET {{baseURL}}/solicitantes/{{id_do_solicitante}}
+Accept: application/json
+
 ### Criar um novo solicitante
 POST {{baseURL}}/solicitantes
 Content-Type: application/json

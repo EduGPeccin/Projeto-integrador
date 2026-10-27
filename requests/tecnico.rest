@@ -10,7 +10,7 @@ POST {{baseURL}}/tecnicos
 Content-Type: application/json
 
 {
- "name": "Carlos Almeida",
+ "nome": "Carlos Almeida",
  "email": "carlos@example.com"
 }
 
@@ -19,7 +19,7 @@ POST {{baseURL}}/tecnicos
 Content-Type: application/json
 
 {
- "name": "Teste Email Invalido",
+ "nome": "Teste Email Invalido",
  "email": "email_invalido"
 }
 
@@ -28,7 +28,7 @@ POST {{baseURL}}/tecnicos
 Content-Type: application/json
 
 {
- "name": "Carlos Almeida",
+ "nome": "Carlos Almeida",
  "email": "carlos@example.com"
 }
 
@@ -37,7 +37,7 @@ PUT {{baseURL}}/tecnicos/{{id_do_tecnico}}
 Content-Type: application/json
     
 {
- "name": "Carlos de Almeida Atualizado",
+ "nome": "Carlos de Almeida Atualizado",
  "email": "carlosatualizado@example.com"
 }
 
@@ -46,7 +46,7 @@ PUT {{baseURL}}/tecnicos/9999
 Content-Type: application/json
 
 {
- "name": "Usuario Inexistente",
+ "nome": "Técnico Inexistente",
  "email": "inexistente@example.com"
 }
 

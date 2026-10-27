@@ -1,33 +1,36 @@
-const db = require('../config/database');
+const db = require("../config/database");
 // Importa a conexão pool com o banco de dados
 class CategoriaModel {
-    // Busca todos os usuários
-    static async findAll() {
-        const [rows] = await db.query('SELECT * FROM categorias');
-        return rows;
-    }
-    // Busca um usuário pelo email
-    static async findByEmail(email) {
-        const [rows] = await db.query('SELECT * FROM categorias WHERE email = ?', [email]);
-        return rows[0];
-    }
-    //cria um novo usuário
-    static async create(categoria) {
-        const { name, email } = categoria;
-        const [result] = await db.query('INSERT INTO categorias (name, email) VALUES (?,?)', [name, email]);
-        return result.insertId; // Retorna o ID do usuário criado
-    }
-    // Atualiza um usuário existente
-    static async update(id, categoria) {
-        const { name, email } = categoria;
-        const [result] = await db.query('UPDATE categorias SET name = ?, email = ? WHERE id = ?', [name, email, id]);
-        return result.affectedRows; // Retorna o número de linhas afetadas
-    }
-    // Deleta um usuário pelo ID
-    static async delete(id) {
-        const [result] = await db.query('DELETE FROM categorias WHERE id = ?', [id]);
-        return result.affectedRows; // Retorna o número de linhas afetadas
-    }
+  // Busca todos as categorias no banco de dados
+  static async findAll() {
+    const [rows] = await db.query("SELECT * FROM categorias");
+    return rows;
+  }
+  //cria um novo categoria
+  static async create(categoria) {
+    const { nome, descricao } = categoria;
+    const [result] = await db.query(
+      "INSERT INTO categorias (nome, descricao) VALUES (?,?)",
+      [nome, descricao],
+    );
+    return result.insertId; // Retorna o ID do categoria criado
+  }
+  // Atualiza um categoria existente
+  static async update(id_categoria, categoria) {
+    const { nome, descricao } = categoria;
+    const [result] = await db.query(
+      "UPDATE categorias SET nome = ?, descricao = ? WHERE id_categoria = ?",
+      [nome, descricao, id_categoria],
+    );
+    return result.affectedRows; // Retorna o número de linhas afetadas
+  }
+  // Deleta um categoria pelo ID
+  static async delete(id_categoria) {
+    const [result] = await db.query("DELETE FROM categorias WHERE id_categoria = ?", [
+      id_categoria,
+    ]);
+    return result.affectedRows; // Retorna o número de linhas afetadas
+  }
 }
 module.exports = CategoriaModel;
 // Exporta a classe CategoriaModel para ser usada nos services

@@ -13,19 +13,19 @@ class TecnicoModel {
     }
     //cria um novo técnico
     static async create(tecnico) {
-        const { name, email } = tecnico;
-        const [result] = await db.query('INSERT INTO tecnicos (name, email) VALUES (?,?)', [name, email]);
+        const { nome, email } = tecnico;
+        const [result] = await db.query('INSERT INTO tecnicos (nome, email) VALUES (?,?)', [nome, email]);
         return result.insertId; // Retorna o ID do técnico criado
     }
     // Atualiza um técnico existente
-    static async update(id, tecnico) {
-        const { name, email } = tecnico;
-        const [result] = await db.query('UPDATE tecnicos SET name = ?, email = ? WHERE id = ?', [name, email, id]);
+    static async update(id_tecnico, tecnico) {
+        const { nome, email } = tecnico;
+        const [result] = await db.query('UPDATE tecnicos SET nome = ?, email = ? WHERE id_tecnico = ?', [nome, email, id_tecnico]);
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
     // Deleta um técnico pelo ID
-    static async delete(id) {
-        const [result] = await db.query('DELETE FROM tecnicos WHERE id = ?', [id]);
+    static async delete(id_tecnico) {
+        const [result] = await db.query('DELETE FROM tecnicos WHERE id_tecnico = ?', [id_tecnico]);
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
 }

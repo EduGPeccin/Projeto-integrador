@@ -4,7 +4,6 @@ const cors = require('cors');
 // Importa o middleware que permite o compartilhamento de recursos entre diferentes origens (Cross-Origin Resource Sharing)
 const helmet = require('helmet');
 // Importa o middleware de segurança que adiciona cabeçalhos HTTP para proteger contra ataques comuns
-const userRoutes = require('./routes/userRoutes');
 const categoriaRoutes = require('./routes/categoriaRoutes')
 const tecnicoRoutes = require('./routes/tecnicoRoutes')
 const solicitanteRoutes = require('./routes/solicitanteRoutes')
@@ -22,7 +21,6 @@ app.use(helmet());
 app.use(express.json());
 // Permite que o servidor interprete requisições com corpo em formato JSON
 // Rotas da aplicação
-app.use('/users', userRoutes);
 app.use('/categorias', categoriaRoutes);
 app.use('/tecnicos', tecnicoRoutes);
 app.use('/solicitantes', solicitanteRoutes);

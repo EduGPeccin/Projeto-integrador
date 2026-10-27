@@ -10,8 +10,9 @@ POST {{baseURL}}/solicitantes
 Content-Type: application/json
 
 {
- "name": "Carlos Almeida",
- "email": "carlos@example.com"
+ "nome": "Carlos Almeida",
+ "email": "carlos@example.com",
+ "setor": "TI"
 }
 
 ### Criar solicitante com email inválido (erro esperado)
@@ -19,8 +20,9 @@ POST {{baseURL}}/solicitantes
 Content-Type: application/json
 
 {
- "name": "Teste Email Invalido",
- "email": "email_invalido"
+ "nome": "Teste Email Invalido",
+ "email": "email_invalido",
+ "setor": "TI"
 }
 
 ### Criar solicitante com email repetido (erro esperado)
@@ -28,8 +30,9 @@ POST {{baseURL}}/solicitantes
 Content-Type: application/json
 
 {
- "name": "Carlos Almeida",
- "email": "carlos@example.com"
+ "nome": "Carlos Almeida",
+ "email": "carlos@example.com",
+ "setor": "TI"
 }
 
 ### Atualizar um solicitante existente (substitua @id_do_solicitante)
@@ -37,8 +40,9 @@ PUT {{baseURL}}/solicitantes/{{id_do_solicitante}}
 Content-Type: application/json
     
 {
- "name": "Carlos de Almeida Atualizado",
- "email": "carlosatualizado@example.com"
+ "nome": "Carlos de Almeida Atualizado",
+ "email": "carlosatualizado@example.com",
+ "setor": "TI"
 }
 
 ### Atualizar solicitante inexistente (erro esperado)
@@ -46,8 +50,9 @@ PUT {{baseURL}}/solicitantes/9999
 Content-Type: application/json
 
 {
- "name": "Solicitante Inexistente",
- "email": "inexistente@example.com"
+ "nome": "Solicitante Inexistente",
+ "email": "inexistente@example.com",
+ "setor": "TI"
 }
 
 ### Deletar um solicitante existente (substitua @id_do_solicitante)

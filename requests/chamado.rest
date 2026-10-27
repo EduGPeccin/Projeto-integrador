@@ -1,5 +1,5 @@
 @baseURL = http://localhost:3000
-@id_do_chamado = 3
+@id_do_chamado = 1
 
 ### Listar todos os chamados
 GET {{baseURL}}/chamados
@@ -14,10 +14,10 @@ POST {{baseURL}}/chamados
 Content-Type: application/json
 
 {
- "titulo": "Problema com o sistema",
- "descricao": "O sistema está apresentando lentidão.",
- "prioridade": "Alta",
- "solicitantes.nome": "João Silva",
- "categorias.nome": "TI",
- "tecnicos.nome": "Roberto Almeida"
+  "titulo": "Computador não liga",
+  "descricao": "O computador não liga após ser conectado.",
+  "prioridade": "Alta",
+  "solicitante": "João Silva",
+  "categoria": "Hardware",
+  "tecnico_id": 1
 }

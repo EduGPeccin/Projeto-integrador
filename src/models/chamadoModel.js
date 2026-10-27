@@ -87,24 +87,22 @@ class ChamadoModel {
     return result.insertId;
   }
   // Busca um solicitante pelo nome
-static async findBySolicitante(solicitanteName) {
-    const [rows] = await db.query(
-        "SELECT * FROM solicitantes WHERE nome = ?",
-        [solicitanteName]
-    );
+  static async findBySolicitante(nome) {
+    const [rows] = await db.query("SELECT * FROM solicitantes WHERE nome = ?", [
+      nome,
+    ]);
 
     return rows[0];
-}
+  }
 
-// Busca uma categoria pelo nome
-static async findByCategoria(categoriaName) {
-    const [rows] = await db.query(
-        "SELECT * FROM categorias WHERE nome = ?",
-        [categoriaName]
-    );
+  // Busca uma categoria pelo nome
+  static async findByCategoria(nome) {
+    const [rows] = await db.query("SELECT * FROM categorias WHERE nome = ?", [
+      nome,
+    ]);
 
     return rows[0];
-}
+  }
 }
 module.exports = ChamadoModel;
 // Exporta a classe ChamadoModel para ser usada nos services

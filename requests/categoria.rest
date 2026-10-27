@@ -10,7 +10,8 @@ POST {{baseURL}}/categorias
 Content-Type: application/json
 
 {
- "name": "Eletrônicos"
+ "nome": "Eletrônicos",
+ "descricao": "Categoria para eletrônicos"
 }
 
 
@@ -19,7 +20,7 @@ POST {{baseURL}}/categorias
 Content-Type: application/json
 
 {
- "name": "Teste Nome Invalido"
+ "nome": "Teste Nome Invalido"
 }
 
 ### Criar categoria com nome repetido (erro esperado)
@@ -27,7 +28,7 @@ POST {{baseURL}}/categorias
 Content-Type: application/json
 
 {
- "name": "Eletrônicos"
+ "nome": "Eletrônicos"
 }
 
 ### Atualizar uma categoria existente (substitua @id_da_categoria)
@@ -35,7 +36,8 @@ PUT {{baseURL}}/categorias/{{id_da_categoria}}
 Content-Type: application/json
     
 {
- "name": "Eletrônicos Atualizados"
+ "nome": "Eletrônicos Atualizados",
+ "descricao": "Categoria atualizada para eletrônicos"
 }
 
 ### Atualizar categoria inexistente (erro esperado)
@@ -43,7 +45,8 @@ PUT {{baseURL}}/categorias/9999
 Content-Type: application/json
 
 {
- "name": "Categoria Inexistente"
+ "nome": "Categoria Inexistente",
+ "descricao": "Tentativa de atualizar categoria inexistente"
 }
 
 ### Deletar uma categoria existente (substitua @id_da_categoria)

@@ -1,28 +1,45 @@
 const ChamadoModel = require("../models/chamadoModel");
-// Importa o Model responsável pelo acesso ao banco de dados (tabela users)
-const validateEmail = require("../utils/validateEmail");
-// Importa a função utilitária que valida o formato de e-mail
+
 class ChamadoService {
-  // Busca todos os chamados cadastrados
+  // Lista todos os chamados
   static async getAllChamados() {
     return await ChamadoModel.findAll();
   }
-  // Busca um chamado específico pelo ID
+
+  // Busca um chamado pelo ID
   static async getChamadoById(id) {
     return await ChamadoModel.findById(id);
   }
-  // Cria um novo chamado após validações
+
+  // Cria um chamado buscando solicitante e categoria pelo nome
   static async createChamado(chamado) {
-    const existingSolicitante = await ChamadoModel.findBySolicitante(chamado.solicitante);
+    const { solicitante, categoria } = chamado;
+
+    const existingSolicitante =
+      await ChamadoModel.findBySolicitante(solicitante);
+
     if (!existingSolicitante) {
-      throw new Error("Solicitante não encontrado."); // Impede criação de chamado se o solicitante não existir
+      throw new Error("Solicitante não encontrado.");
     }
-    const existingCategoria = await ChamadoModel.findByCategoria(chamado.categoria);
+
+    const existingCategoria =
+      await ChamadoModel.findByCategoria(categoria);
+
     if (!existingCategoria) {
-      throw new Error("Categoria não encontrada."); // Impede criação de chamado se a categoria não existir
+      throw new Error("Categoria não encontrada.");
     }
-    return await ChamadoModel.create(chamado); // Cria o novo chamado
+
+    const novoChamado = {
+      ...chamado,
+      solicitante_id: existingSolicitante.id_solicitante,
+      categoria_id: existingCategoria.id_categoria,
+    };
+
+    delete novoChamado.solicitante;
+    delete novoChamado.categoria;
+
+    return await ChamadoModel.create(novoChamado);
   }
 }
+
 module.exports = ChamadoService;
-// Exporta a classe para ser utilizada pelos controllers

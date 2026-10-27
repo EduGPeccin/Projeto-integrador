@@ -13,19 +13,19 @@ class SolicitanteModel {
     }
     //cria um novo solicitante
     static async create(solicitante) {
-        const { name, email } = solicitante;
-        const [result] = await db.query('INSERT INTO solicitantes (name, email) VALUES (?,?)', [name, email]);
+        const { nome, email, setor } = solicitante;
+        const [result] = await db.query('INSERT INTO solicitantes (nome, email, setor) VALUES (?, ?, ?)', [nome, email, setor]);
         return result.insertId; // Retorna o ID do solicitante criado
     }
     // Atualiza um solicitante existente
-    static async update(id, solicitante) {
-        const { name, email } = solicitante;
-        const [result] = await db.query('UPDATE solicitantes SET name = ?, email = ? WHERE id = ?', [name, email, id]);
+    static async update(id_solicitante, solicitante) {
+        const { nome, email, setor } = solicitante;
+        const [result] = await db.query('UPDATE solicitantes SET nome = ?, email = ?, setor = ? WHERE id_solicitante = ?', [nome, email, setor, id_solicitante]);
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
     // Deleta um solicitante pelo ID
-    static async delete(id) {
-        const [result] = await db.query('DELETE FROM solicitantes WHERE id = ?', [id]);
+    static async delete(id_solicitante) {
+        const [result] = await db.query('DELETE FROM solicitantes WHERE id_solicitante = ?', [id_solicitante]);
         return result.affectedRows; // Retorna o número de linhas afetadas
     }
 }

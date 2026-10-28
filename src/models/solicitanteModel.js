@@ -7,8 +7,8 @@ class SolicitanteModel {
         return rows;
     }
     // Busca um solicitante pelo ID
-    static async findById(id) {
-        const [rows] = await db.query('SELECT * FROM solicitantes WHERE id = ?', [id]);
+    static async findById(id_solicitante) {
+        const [rows] = await db.query('SELECT * FROM solicitantes WHERE id_solicitante = ?', [id_solicitante]);
         return rows[0];
     }
     // Busca um solicitante pelo email

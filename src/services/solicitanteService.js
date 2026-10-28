@@ -7,6 +7,14 @@ class SolicitanteService {
   static async getAllSolicitantes() {
     return await SolicitanteModel.findAll();
   }
+  // Busca um solicitante pelo ID
+  static async getSolicitanteById(id_solicitante) {
+    const solicitante = await SolicitanteModel.findById(id_solicitante);
+    if (!solicitante) {
+      throw new Error("Solicitante não encontrado."); // Caso o solicitante não exista
+    }
+    return solicitante;
+  }
   // Cria um novo solicitante após validações
   static async createSolicitante(solicitante) {
     if (!validateEmail(solicitante.email)) {

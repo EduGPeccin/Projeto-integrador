@@ -1,44 +1,94 @@
+
 const SolicitanteService = require("../services/solicitanteService");
-// Importa o serviço que contém a lógica de negócio para manipular solicitantes
+
 class SolicitanteController {
-  // Método para listar todos os solicitantes
+  // Lista todos os solicitantes
   static async getAll(req, res) {
     try {
-      const solicitantes = await SolicitanteService.getAllSolicitantes(); // Chama o service para buscar solicitantes
-      res.json(solicitantes); // Retorna a lista em formato JSON
+      const solicitantes =
+        await SolicitanteService.getAllSolicitantes();
+
+      res.json(solicitantes);
     } catch (error) {
-      res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
+      res.status(500).json({ error: error.message });
     }
   }
-  // Método para criar um novo solicitante
+
+  // Busca um solicitante pelo ID
+  static async getById(req, res) {
+    try {
+      const id = req.params.id;
+      const solicitante =
+        await SolicitanteService.getSolicitanteById(id);
+
+      if (!solicitante) {
+        return res.status(404).json({
+          error: "Solicitante não encontrado."
+        });
+      }
+
+      res.json(solicitante);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+
+  // Cria um solicitante
   static async create(req, res) {
     try {
-      const id = await SolicitanteService.createSolicitante(req.body); // Chama o service para criar solicitante
-      res.status(201).json({ message: "Solicitante criado com sucesso.", id }); // Retorna status 201 (criado) e o ID
+      const id =
+        await SolicitanteService.createSolicitante(req.body);
+
+      res.status(201).json({
+        message: "Solicitante criado com sucesso.",
+        id
+      });
     } catch (error) {
-      res.status(400).json({ error: error.message }); // Em caso de erro de validação, retorna status 400
+      res.status(400).json({ error: error.message });
     }
   }
-  // Método para atualizar um solicitante existente
+
+  // Atualiza um solicitante
   static async update(req, res) {
     try {
-      const id_solicitante = req.params.id; // Pega o ID da URL
-      await SolicitanteService.updateSolicitante(id_solicitante, req.body); // Chama o service para atualizar
-      res.json({ message: "Solicitante atualizado com sucesso." });
+      const id = req.params.id;
+      const atualizado =
+        await SolicitanteService.updateSolicitante(id, req.body);
+
+      if (!atualizado) {
+        return res.status(404).json({
+          error: "Solicitante não encontrado."
+        });
+      }
+
+      res.json({
+        message: "Solicitante atualizado com sucesso."
+      });
     } catch (error) {
-      res.status(400).json({ error: error.message }); // Retorna erro se não encontrar ou problema nos dados
+      res.status(400).json({ error: error.message });
     }
   }
-  // Método para deletar um solicitante
+
+  // Exclui um solicitante
   static async delete(req, res) {
     try {
-      const id_solicitante = req.params.id; // Pega o ID da URL
-      await SolicitanteService.deleteSolicitante(id_solicitante); // Chama o service para deletar
-      res.json({ message: "Solicitante deletado com sucesso." });
+      const id = req.params.id;
+      const excluido =
+        await SolicitanteService.deleteSolicitante(id);
+
+      if (!excluido) {
+        return res.status(404).json({
+          error: "Solicitante não encontrado."
+        });
+      }
+
+      res.json({
+        message: "Solicitante excluído com sucesso."
+      });
     } catch (error) {
-      res.status(400).json({ error: error.message }); // Retorna erro se solicitante não encontrado
+      res.status(400).json({ error: error.message });
     }
   }
 }
+
 module.exports = SolicitanteController;
-// Exporta o Controller para ser usado nas rotas

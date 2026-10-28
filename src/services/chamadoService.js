@@ -1,3 +1,4 @@
+
 const ChamadoModel = require("../models/chamadoModel");
 
 class ChamadoService {
@@ -39,6 +40,65 @@ class ChamadoService {
     delete novoChamado.categoria;
 
     return await ChamadoModel.create(novoChamado);
+  }
+
+  // Atualiza um chamado existente pelo ID
+  static async updateChamado(id, chamado) {
+    const existingChamado = await ChamadoModel.findById(id);
+
+    if (!existingChamado) {
+      return null;
+    }
+
+    const { status, solucao, tecnico } = chamado;
+    const dadosAtualizados = { ...chamado };
+
+    // Busca o técnico pelo nome, caso informado
+    if (tecnico) {
+      const existingTecnico =
+        await ChamadoModel.findByTecnico(tecnico);
+
+      if (!existingTecnico) {
+        throw new Error("Técnico não encontrado.");
+      }
+
+      dadosAtualizados.tecnico_id = existingTecnico.id_tecnico;
+    }
+
+    delete dadosAtualizados.tecnico;
+
+    // Valida o técnico para atendimento
+    if (
+      status === "Em Atendimento" &&
+      !(tecnico || existingChamado.tecnico)
+    ) {
+      throw new Error(
+        "Um técnico deve ser atribuído quando o status é 'Em Atendimento'."
+      );
+    }
+
+    // Valida a solução para conclusão
+    if (
+      status === "Concluído" &&
+      !(solucao || existingChamado.solucao)
+    ) {
+      throw new Error(
+        "Uma solução deve ser fornecida quando o status é 'Concluído'."
+      );
+    }
+
+    return await ChamadoModel.update(id, dadosAtualizados);
+  }
+
+  // Exclui um chamado existente pelo ID
+  static async deleteChamado(id) {
+    const existingChamado = await ChamadoModel.findById(id);
+
+    if (!existingChamado) {
+      return null;
+    }
+
+    return await ChamadoModel.delete(id);
   }
 }
 

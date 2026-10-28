@@ -32,6 +32,32 @@ class ChamadoController {
       res.status(400).json({ error: error.message }); // Em caso de erro de validação, retorna status 400
     }
   }
+  // Método para atualizar um chamado existente pelo ID
+  static async update(req, res) {
+    try {
+      const id = req.params.id; // Pega o ID da URL
+      const updatedChamado = await ChamadoService.updateChamado(id, req.body); // Chama o service para atualizar chamado
+      if (!updatedChamado) {
+        return res.status(404).json({ error: "Chamado não encontrado." }); // Retorna 404 se não encontrar
+      }
+      res.json({message: "Chamado atualizado com sucesso."}); // Retorna o chamado atualizado em formato JSON
+    } catch (error) {
+      res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
+    }
+  }
+  // Método para excluir um chamado existente pelo ID
+  static async delete(req, res) {
+    try {
+      const id = req.params.id; // Pega o ID da URL
+      const deletedChamado = await ChamadoService.deleteChamado(id); // Chama o service para excluir chamado
+      if (!deletedChamado) {
+        return res.status(404).json({ error: "Chamado não encontrado." }); // Retorna 404 se não encontrar
+      }
+      res.json({ message: "Chamado excluído com sucesso." }); // Retorna mensagem de sucesso
+    } catch (error) {
+      res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
+    }
+  }
 }
 module.exports = ChamadoController;
 // Exporta o Controller para ser usado nas rotas

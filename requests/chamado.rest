@@ -1,5 +1,6 @@
+
 @baseURL = http://localhost:3000
-@id_do_chamado = 1
+@id_do_chamado = 2
 
 ### Listar todos os chamados
 GET {{baseURL}}/chamados
@@ -18,6 +19,36 @@ Content-Type: application/json
   "descricao": "O computador não liga após ser conectado.",
   "prioridade": "Alta",
   "solicitante": "João Silva",
-  "categoria": "Hardware",
-  "tecnico_id": 1
+  "categoria": "Hardware"
 }
+
+### Atualizar prioridade e atribuir técnico
+PUT {{baseURL}}/chamados/{{id_do_chamado}}
+Content-Type: application/json
+
+{
+  "prioridade": "Media",
+  "tecnico": "Roberto Almeida"
+}
+
+### Atualizar status e atribuir técnico
+PUT {{baseURL}}/chamados/{{id_do_chamado}}
+Content-Type: application/json
+
+{
+  "status": "Em_Atendimento",
+  "tecnico": "Roberto Almeida"
+}
+
+### Concluir chamado com solução
+PUT {{baseURL}}/chamados/{{id_do_chamado}}
+Content-Type: application/json
+
+{
+  "status": "Concluido",
+  "tecnico": "Roberto Almeida",
+  "solucao": "O técnico realizou a manutenção e o computador voltou a funcionar normalmente."
+}
+
+### Excluir um chamado
+DELETE {{baseURL}}/chamados/{{id_do_chamado}}

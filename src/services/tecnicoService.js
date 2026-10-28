@@ -1,7 +1,5 @@
 const TecnicoModel = require("../models/tecnicoModel");
 // Importa o Model responsável pelo acesso ao banco de dados (tabela técnicos)
-const validateEmail = require("../utils/validateEmail");
-// Importa a função utilitária que valida o formato de e-mail
 class TecnicoService {
   // Busca todos os técnicos cadastrados
   static async getAllTecnicos() {

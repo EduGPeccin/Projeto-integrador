@@ -1,5 +1,4 @@
 @baseURL = http://localhost:3000
-@id_do_tecnico = 3
 
 ### Listar todos os técnicos
 GET {{baseURL}}/tecnicos

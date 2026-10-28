@@ -1,5 +1,4 @@
 @baseURL = http://localhost:3000
-@id_da_categoria = 3
 
 ### Listar todas as categorias
 GET {{baseURL}}/categorias

@@ -52,3 +52,9 @@ Content-Type: application/json
 
 ### Excluir um chamado
 DELETE {{baseURL}}/chamados/{{id_do_chamado}}
+
+### Buscar chamados por status
+GET {{baseURL}}/chamados/status/Concluido
+
+### Buscar chamados por prioridade
+GET {{baseURL}}/chamados/prioridade/Alta

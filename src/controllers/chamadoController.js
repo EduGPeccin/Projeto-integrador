@@ -58,6 +58,26 @@ class ChamadoController {
       res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
     }
   }
+  // Método para buscar chamados por status
+  static async getByStatus(req, res) {
+    try {
+      const status = req.params.status; // Pega o status da URL
+      const chamados = await ChamadoService.getChamadosByStatus(status); // Chama o service para buscar chamados por status
+      res.json(chamados); // Retorna a lista de chamados encontrados em formato JSON
+    } catch (error) {
+      res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
+    }
+  }
+  // Método para buscar chamados por prioridade
+  static async getByPrioridade(req, res) {
+    try {
+      const prioridade = req.params.prioridade; // Pega a prioridade da URL
+      const chamados = await ChamadoService.getChamadosByPrioridade(prioridade); // Chama o service para buscar chamados por prioridade
+      res.json(chamados); // Retorna a lista de chamados encontrados em formato JSON
+    } catch (error) {
+      res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
+    }
+  }
 }
 module.exports = ChamadoController;
 // Exporta o Controller para ser usado nas rotas

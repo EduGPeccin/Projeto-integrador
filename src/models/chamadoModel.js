@@ -169,6 +169,30 @@ class ChamadoModel {
 
     return result.affectedRows > 0;
   }
+
+  // Busca chamados por status
+  static async findByStatus(status) {
+    const [rows] = await db.query(
+      `SELECT COUNT(*) AS total FROM chamados 
+      WHERE status = ? 
+      GROUP BY status`,
+      [status]
+    );
+
+    return rows;
+  }
+
+  // Busca chamados por prioridade
+  static async findByPrioridade(prioridade) {
+    const [rows] = await db.query(
+      `SELECT COUNT(*) AS total FROM chamados 
+      WHERE prioridade = ? 
+      GROUP BY prioridade`,
+      [prioridade]
+    );
+
+    return rows;
+  }
 }
 
 module.exports = ChamadoModel;

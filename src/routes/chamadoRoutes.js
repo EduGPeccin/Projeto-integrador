@@ -14,5 +14,9 @@ router.post('/', ChamadoController.create);
 router.put('/:id', ChamadoController.update);
 // Define a rota para excluir um chamado existente pelo ID
 router.delete('/:id', ChamadoController.delete);
+// Define a rota para buscar chamados por status
+router.get('/status/:status', ChamadoController.getByStatus);
+// Define a rota para buscar chamados por prioridade
+router.get('/prioridade/:prioridade', ChamadoController.getByPrioridade);
 module.exports = router;
 // Exporta o roteador configurado para ser usado no app principal

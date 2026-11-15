@@ -100,6 +100,32 @@ class ChamadoService {
 
     return await ChamadoModel.delete(id);
   }
+
+  // Busca chamados por status
+  static async getChamadosByStatus(status) {
+    const validStatuses = [
+      "Aberto",
+      "Em_Atendimento",
+      "Concluido",
+    ];
+    if (!validStatuses.includes(status)) {
+      throw new Error("Status inválido.");
+    }
+    return await ChamadoModel.findByStatus(status);
+  }
+
+  // Busca chamados por prioridade
+  static async getChamadosByPrioridade(prioridade) {
+    const validPrioridades = [
+      "Baixa",
+      "Média",
+      "Alta",
+    ];
+    if (!validPrioridades.includes(prioridade)) {
+      throw new Error("Prioridade inválida.");
+    }
+    return await ChamadoModel.findByPrioridade(prioridade);
+  }
 }
 
 module.exports = ChamadoService;

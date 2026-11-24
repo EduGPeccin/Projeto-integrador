@@ -1,6 +1,7 @@
 const ChamadoService = require("../services/chamadoService");
 // Importa o serviço que contém a lógica de negócio para manipular chamados
 class ChamadoController {
+
   // Método para listar todos os chamados
   static async getAll(req, res) {
     try {
@@ -10,6 +11,7 @@ class ChamadoController {
       res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
     }
   }
+
   // Método para listar um chamado específico pelo ID
   static async getById(req, res) {
     try {
@@ -23,6 +25,7 @@ class ChamadoController {
       res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
     }
   }
+
   // Método para criar um novo chamado
   static async create(req, res) {
     try {
@@ -32,6 +35,7 @@ class ChamadoController {
       res.status(400).json({ error: error.message }); // Em caso de erro de validação, retorna status 400
     }
   }
+
   // Método para atualizar um chamado existente pelo ID
   static async update(req, res) {
     try {
@@ -45,6 +49,7 @@ class ChamadoController {
       res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
     }
   }
+
   // Método para excluir um chamado existente pelo ID
   static async delete(req, res) {
     try {
@@ -58,6 +63,7 @@ class ChamadoController {
       res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
     }
   }
+
   // Método para buscar chamados por status
   static async getByStatus(req, res) {
     try {
@@ -68,6 +74,7 @@ class ChamadoController {
       res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
     }
   }
+  
   // Método para buscar chamados por prioridade
   static async getByPrioridade(req, res) {
     try {

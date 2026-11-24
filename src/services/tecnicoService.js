@@ -1,10 +1,12 @@
 const TecnicoModel = require("../models/tecnicoModel");
 // Importa o Model responsável pelo acesso ao banco de dados (tabela técnicos)
 class TecnicoService {
+  
   // Busca todos os técnicos cadastrados
   static async getAllTecnicos() {
     return await TecnicoModel.findAll();
   }
+
   // Cria um novo técnico após validações
   static async createTecnico(tecnico) {
     if (!validateEmail(tecnico.email)) {
@@ -16,6 +18,7 @@ class TecnicoService {
     }
     return await TecnicoModel.create(tecnico); // Cria o novo técnico
   }
+
   // Atualiza informações de um técnico existente
   static async updateTecnico(id_tecnico, tecnico) {
     const updatedRows = await TecnicoModel.update(id_tecnico, tecnico);
@@ -24,6 +27,7 @@ class TecnicoService {
     }
     return updatedRows;
   }
+
   // Deleta um técnico pelo ID
   static async deleteTecnico(id_tecnico) {
     const deletedRows = await TecnicoModel.delete(id_tecnico);

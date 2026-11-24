@@ -1,6 +1,7 @@
 const TecnicoService = require("../services/tecnicoService");
 // Importa o serviço que contém a lógica de negócio para manipular técnicos
 class TecnicoController {
+
   // Método para listar todos os técnicos
   static async getAll(req, res) {
     try {
@@ -10,6 +11,7 @@ class TecnicoController {
       res.status(500).json({ error: error.message }); // Em caso de erro, retorna status 500 (erro interno)
     }
   }
+
   // Método para criar um novo técnico
   static async create(req, res) {
     try {
@@ -19,6 +21,7 @@ class TecnicoController {
       res.status(400).json({ error: error.message }); // Em caso de erro de validação, retorna status 400
     }
   }
+
   // Método para atualizar um técnico existente
   static async update(req, res) {
     try {
@@ -29,6 +32,7 @@ class TecnicoController {
       res.status(400).json({ error: error.message }); // Retorna erro se não encontrar ou problema nos dados
     }
   }
+  
   // Método para deletar um técnico
   static async delete(req, res) {
     try {

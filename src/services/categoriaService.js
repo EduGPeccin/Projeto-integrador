@@ -5,11 +5,13 @@ class CategoriaService {
   static async getAllCategorias() {
     return await CategoriaModel.findAll();
   }
+
   // Cria um novo usuário após validações
   static async createCategoria(categoria) {
    const createCategoria = await CategoriaModel.create(categoria);
     return createCategoria;
   }
+
   // Atualiza informações de um usuário existente
   static async updateCategoria(id_categoria, categoria) {
     const updatedRows = await CategoriaModel.update(id_categoria, categoria);
@@ -18,6 +20,7 @@ class CategoriaService {
     }
     return updatedRows;
   }
+  
   // Deleta um usuário pelo ID
   static async deleteCategoria(id_categoria) {
     const deletedRows = await CategoriaModel.delete(id_categoria);

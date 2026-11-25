@@ -2,6 +2,7 @@
 const SolicitanteService = require("../services/solicitanteService");
 
 class SolicitanteController {
+  
   // Lista todos os solicitantes
   static async getAll(req, res) {
     try {

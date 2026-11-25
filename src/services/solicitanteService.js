@@ -3,10 +3,12 @@ const SolicitanteModel = require("../models/solicitanteModel");
 const validateEmail = require("../utils/validateEmail");
 // Importa a função utilitária que valida o formato de e-mail
 class SolicitanteService {
+
   // Busca todos os solicitantes cadastrados
   static async getAllSolicitantes() {
     return await SolicitanteModel.findAll();
   }
+
   // Busca um solicitante pelo ID
   static async getSolicitanteById(id_solicitante) {
     const solicitante = await SolicitanteModel.findById(id_solicitante);
@@ -15,6 +17,7 @@ class SolicitanteService {
     }
     return solicitante;
   }
+
   // Cria um novo solicitante após validações
   static async createSolicitante(solicitante) {
     if (!validateEmail(solicitante.email)) {
@@ -28,6 +31,7 @@ class SolicitanteService {
     }
     return await SolicitanteModel.create(solicitante); // Cria o novo solicitante
   }
+
   // Atualiza informações de um solicitante existente
   static async updateSolicitante(id_solicitante, solicitante) {
     const updatedRows = await SolicitanteModel.update(id_solicitante, solicitante);
@@ -36,6 +40,7 @@ class SolicitanteService {
     }
     return updatedRows;
   }
+  
   // Deleta um solicitante pelo ID
   static async deleteSolicitante(id_solicitante) {
     const deletedRows = await SolicitanteModel.delete(id_solicitante);
